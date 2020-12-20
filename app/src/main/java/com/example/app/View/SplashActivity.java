@@ -1,10 +1,12 @@
-package com.example.app;
+package com.example.app.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.app.R;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -19,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // This method will be executed once the timer is over
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                Intent i = new Intent(SplashActivity.this, Login.class);
                 startActivity(i);
                 finish();
             }

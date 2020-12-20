@@ -1,9 +1,8 @@
-package com.example.app;
+package com.example.app.ViewModel;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,37 +11,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.app.Model.NewsList;
+import com.example.app.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public  class Articles extends Fragment {
+public class Edit extends Fragment {
     View root;
     RecyclerView recyclerView;
     DatabaseReference mbase;
-    NewsAdapter adapter;
+    EditAdapter adapter;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
-
-
-
-    }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.fragment_articles, container, false);
-        recyclerView = root.findViewById(R.id.recyclerView);
+        root = inflater.inflate(R.layout.fragment_edit, container, false);
+        recyclerView = root.findViewById(R.id.recyclerView2);
+
         mbase = FirebaseDatabase.getInstance().getReference();
         FirebaseRecyclerOptions<NewsList> news
                 = new FirebaseRecyclerOptions.Builder<NewsList>()
                 .setQuery(mbase, NewsList.class)
                 .build();
-        adapter = new NewsAdapter(news);
+        adapter = new EditAdapter(news);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager( new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
@@ -66,6 +58,4 @@ public  class Articles extends Fragment {
         super.onStop();
         adapter.stopListening();
     }
-
-
 }
